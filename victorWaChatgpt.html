@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Wellness App</title>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Wellness App</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('fitness')">Fitness</a></li>
+                <li><a href="#" onclick="showPage('nutrition')">Nutrition</a></li>
+                <li><a href="#" onclick="showPage('mentalHealth')">Mental Health</a></li>
+                <li><a href="#" onclick="showPage('community')">Community</a></li>
+            </ul>
+        </nav>
+        <main>
+             <div id="home" class="page active">
+                <h2>Welcome to Wellness App</h2>
+                <p>Take a step towards a healthier life. Wellness App is your all-in-one solution for fitness, nutrition, mental health, and community support.</p>
+                <img src="home-image.jpg" alt="Wellness Image">
+                <blockquote>
+                    "Your wellness journey starts here. Embrace a balanced and healthy lifestyle."
+                </blockquote>
+                <a href="#" onclick="showPage('fitness')">Start Your Fitness Journey</a>
+            </div>
+            <div id="fitness" class="page">
+                <h2>Fitness Tracking</h2>
+                <p>Stay active with our fitness tracking feature. Log your workouts, monitor calories burned, and set achievable fitness goals. Your journey to a healthier you starts here.</p>
+                <ul>
+                    <li>Track Steps</li>
+                    <li>Record Workouts</li>
+                    <li>Calorie Counter</li>
+                </ul>
+                <img src="fitness-image.jpg" alt="Fitness Image">
+                <p>Join the daily fitness challenge and compete with others for the top spot on the leaderboard!</p>
+                <a href="#" onclick="showPage('nutrition')">Explore Nutrition Plans</a>
+            </div>
+            <div id="nutrition" class="page">
+                <h2>Personalized Nutrition Plans</h2>
+                <p>Eat well with personalized nutrition plans. Our experts craft meal plans tailored to your preferences and dietary needs. Achieve your nutrition goals and feel your best.</p>
+                <ul>
+                    <li>Customized Meal Plans</li>
+                    <li>Nutritional Guidance</li>
+                    <li>Healthy Recipes</li>
+                </ul>
+                <img src="nutrition-image.jpg" alt="Nutrition Image">
+                <p>Plan your weekly meals, track your calorie intake, and explore our library of delicious and nutritious recipes.</p>
+                <a href="#" onclick="showPage('nutrition')">Explore Mental Health Resources</a>
+            </div>
+            <div id="mentalHealth" class="page">
+                <h2>Mental Health Resources</h2>
+                <p>Prioritize your mental well-being. Explore resources that include mindfulness exercises, stress-relief techniques, and articles on maintaining a positive mindset.</p>
+                <ul>
+                    <li>Mindfulness Meditation</li>
+                    <li>Stress Reduction Tips</li>
+                    <li>Articles on Mental Wellness</li>
+                </ul>
+                <img src="mental-health-image.jpg" alt="Mental Health Image">
+                <p>Practice mindfulness, log your daily reflections, and discover expert tips for reducing stress and improving mental well-being.</p>
+                <a href="#" onclick="showPage('mentalHealth')">Join the Community</a>
+            </div>
+            <div id="community" class="page">
+                <h2>Community Support</h2>
+                <p>Join our vibrant community to share experiences, seek advice, and find support. Connect with individuals on a similar wellness journey and inspire each other.</p>
+                <ul>
+                    <li>Discussion Forums</li>
+                    <li>Wellness Challenges</li>
+                    <li>Community Events</li>
+                </ul>
+                <img src="community-image.jpg" alt="Community Image">
+                <p>Engage in discussions, participate in wellness challenges, and stay updated on community events. Together, we support and inspire!</p>
+
+                <a href="#" onclick="showPage('login')">login now</a>    
+            	            	
+            	<div id="login" class="page">
+            		<h1>hello</h1>
+            		<div class="box">
+            			<br>
+            			
+            			<h3>LOGIN TO YOUR ACCOUNT<h2>
+            			<hr>
+            		<label for="username">username</label><br>
+            		<input type="text" required><br>
+            		
+            		<label for="phoneNumber">Phone Number</label><br>          	
+            		<input type="phoneNumber" name="phoneNumber" required><br>
+            		<label for="date">DOB</label><br>
+            		<input type="date" name="dob" required><br>
+            		<label for="redio">Gender</label required><br>
+            		<select>
+            			<option>male</option>
+            			<option>female</option>
+            			
+            		</select><br>
+            		<input type="submit" name="submit">
+            	</div>
+            </div>
+            	</form>          	
+                  
+        </main>
+       
+        <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@church.com</p>
+                <p>Phone: +254-799-553-357</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">Instagram</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#">Home</a></p>
+                <p><a href="#">Fitness</a></p>
+                <p><a href="#">nutrition</a></p>
+                <p><a href="#">Mental Health</a></p>
+                <p><a href="#">Community</a></p>
+                
+            </div>
+            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Church App. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+    	function showPage(pageId) {
+    // Hide all pages
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+
+    // Show the selected page
+    const selectedPage = document.getElementById(pageId);
+    selectedPage.classList.add('active');
+}
+
+    </script>
+</body>
+</html>

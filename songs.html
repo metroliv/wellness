@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Text-to-Speech & Voice Recording</title>
+</head>
+<body>
+    <div class="container">
+        <textarea rows="40" id="inputText" placeholder="Enter text..."></textarea>
+
+        <div class="options">
+            <label for="voiceSelect">Select Person:</label>
+            <select id="voiceSelect"></select>
+
+            <label for="languageSelect">Select Language:</label>
+            <select id="languageSelect"></select>
+        </div>
+
+        <div class="controls">
+            <button id="speakButton" onclick="speakText()">Speak</button>
+            <button id="stopButton" onclick="stopSpeech()" disabled>Stop</button>
+            <button id="downloadButton" onclick="downloadAudio()" disabled>Download</button>
+            <button id="recordButton" onclick="startRecording()">Start Recording</button>
+            <button id="stopRecordButton" onclick="stopRecording()" disabled>Stop Recording</button>
+            <label for="muteCheckbox">
+                <input type="checkbox" id="muteCheckbox" onchange="toggleMute()"> Mute
+            </label>
+        </div>
+
+        <div class="speech-area" id="speechArea"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let mediaRecorder;
+        let audioChunks = [];
+        let speaking = false;
+
+        function startRecording() {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then((stream) => {
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data);
+                        }
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                        const url = URL.createObjectURL(audioBlob);
+
+                        const audio = new Audio(url);
+                        audio.controls = true;
+
+                        const downloadButton = document.createElement('button');
+                        downloadButton.textContent = 'Download';
+                        downloadButton.addEventListener('click', () => downloadAudio(audioBlob));
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.addEventListener('click', () => deleteRecording(audio, audioBlob));
+
+                        const audioContainer = document.createElement('div');
+                        audioContainer.appendChild(audio);
+                        audioContainer.appendChild(downloadButton);
+                        audioContainer.appendChild(deleteButton);
+
+                        document.getElementById('speechArea').appendChild(audioContainer);
+                    };
+
+                    mediaRecorder.start();
+                    document.getElementById('recordButton').disabled = true;
+                    document.getElementById('stopRecordButton').disabled = false;
+                })
+                .catch((error) => {
+                    console.error('Error accessing microphone:', error);
+                });
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                document.getElementById('recordButton').disabled = false;
+                document.getElementById('stopRecordButton').disabled = true;
+            }
+        }
+
+        function downloadAudio(audioBlob) {
+            const url = URL.createObjectURL(audioBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'recorded_audio.wav';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function deleteRecording(audio, audioBlob) {
+            audio.parentNode.removeChild(audio);
+            URL.revokeObjectURL(audio.src);
+            URL.revokeObjectURL(URL.createObjectURL(audioBlob));
+        }
+
+        // ... (existing code for text-to-speech and voice recording)
+
+        document.getElementById('speakButton').addEventListener('click', speakText);
+        document.getElementById('stopButton').addEventListener('click', stopSpeech);
+        document.getElementById('muteCheckbox').addEventListener('change', toggleMute);
+        document.getElementById('recordButton').addEventListener('click', startRecording);
+        document.getElementById('stopRecordButton').addEventListener('click', stopRecording);
+        speechSynthesis.addEventListener('voiceschanged', populateVoiceList);
+    </script>
+</body>
+</html>
