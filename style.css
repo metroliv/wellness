@@ -71,11 +71,15 @@ footer {
 h3{
     color: blue;
 }
+img{
+    height: 200px;
+    margin: auto;
+}
 footer {
     background-color: #1a1a1a;
     color: #fff;
     padding: 20px 10px; /* Adjust padding for smaller screens */
-    margin-top: 200px;
+    margin-top: 300px;
 }
 
 .footer-container {
