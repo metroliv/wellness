@@ -18,6 +18,7 @@
                 <li><a href="#" onclick="showPage('nutrition')">Nutrition</a></li>
                 <li><a href="#" onclick="showPage('mentalHealth')">Mental Health</a></li>
                 <li><a href="#" onclick="showPage('community')">Community</a></li>
+
             </ul>
         </nav>
         <main>
@@ -51,9 +52,9 @@
                 <h2>Personalized Nutrition Plans</h2>
                 <p>Eat well with personalized nutrition plans. Our experts craft meal plans tailored to your preferences and dietary needs. Achieve your nutrition goals and feel your best.</p>
                 <ul>
-                    <li>Customized Meal Plans</li>
-                    <li>Nutritional Guidance</li>
-                    <li>Healthy Recipes</li>
+                    <li><a href="plans.html">Customized Meal Plans</a></li>
+                    <li><a href="#">Nutritional Guidance</a></li>
+                    <li><a href="#">Healthy Recipes</a></li>
                 </ul>
                 <img src="n1.jpeg" alt="Nutrition Image">
                 <img src="n2.jpeg" alt="Nutrition Image">
@@ -88,14 +89,16 @@
                 <img src="community-image.jpeg" alt="Community Image">
                 <p>Engage in discussions, participate in wellness challenges, and stay updated on community events. Together, we support and inspire!</p>
 
-                <a href="#" onclick="showPage('login')">login now</a>    
-            	            	
+            
+                <a href="#" onclick="showPage('login')">login</a>   
+            </div>
+                        	
             	<div id="login" class="page">
-            		<h1>hello</h1>
+            		
             		<div class="box">
             			<br>
-            			
-            			<h3>LOGIN TO YOUR ACCOUNT<h2>
+            			<form>
+            			<h3>LOGIN TO YOUR ACCOUNT</h3>
             			<hr>
             		<label for="username">username</label><br>
             		<input type="text" required><br>
@@ -111,9 +114,9 @@
             			
             		</select><br>
             		<input type="submit" name="submit">
-            	</div>
-            </div>
-            	</form>          	
+                    </form>  
+            	   </div>
+                </div>          
                   
         </main>
        
@@ -153,6 +156,7 @@
     // Show the selected page
     const selectedPage = document.getElementById(pageId);
     selectedPage.classList.add('active');
+    console.log(pageId)
 }
 
     </script>
